@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tvBestPlaceForGearMargin">115dp</dimen>
+    <dimen name="smallBtnWidth">133dp</dimen>
+    <dimen name="smallBtnHieght">55dp</dimen>
+    <dimen name="mediumBtnWidth">200dp</dimen>
+    <dimen name="mediumBtnHieght">55dp</dimen>
+    <dimen name="buttonCorners">4dp</dimen>
+    <dimen name="loginTxtHeight">60dp</dimen>
+    <dimen name="mediumButtonHeight">55dp</dimen>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/blury_background"
+        android:scaleType="centerCrop"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/h3"
+            android:layout_marginTop="120dp"
+            android:drawableStart="@drawable/ic_kleine_shape"
+            android:drawablePadding="6dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="MoneyMakers"
+            />
+        <TextView
+            android:id="@+id/tvBestPlaceForGear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/h4"
+            android:layout_marginTop="@dimen/tvBestPlaceForGearMargin"
+            app:layout_constraintTop_toBottomOf="@id/tvAppName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAlignment="center"
+            android:text="@string/bestPlace"
+            android:gravity="center"
+            android:textSize="35dp"
+            />
+
+        <TextView
+            android:id="@+id/tvQuality"
+            style="@style/h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/quality"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvBestPlaceForGear"
+            app:layout_constraintEnd_toEndOf="@id/tvBestPlaceForGear"
+            app:layout_constraintStart_toStartOf="@id/tvBestPlaceForGear"
+            android:layout_marginTop="15dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/registerAccountOptionsBtn"
+            android:layout_width="@dimen/mediumBtnWidth"
+            android:layout_height="@dimen/mediumBtnHieght"
+            style="@style/blueButtonStyle"
+            app:layout_constraintTop_toBottomOf="@id/tvQuality"
+            app:layout_constraintStart_toStartOf="@id/tvQuality"
+            app:layout_constraintEnd_toEndOf="@id/tvQuality"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/register"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginAccountOptionsBtn"
+            android:layout_width="@dimen/mediumBtnWidth"
+            android:layout_height="@dimen/mediumBtnHieght"
+            style="@style/whiteButtonStyle"
+            app:layout_constraintTop_toBottomOf="@id/registerAccountOptionsBtn"
+            app:layout_constraintStart_toStartOf="@id/tvQuality"
+            app:layout_constraintEnd_toEndOf="@id/tvQuality"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/login"
+            />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

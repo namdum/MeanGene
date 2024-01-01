@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Mean Gene</string>
+    <string name="bestPlace">The Best Place For \n New Gear</string>
+    <string name="quality">Get quality products Online from out store</string>
+    <string name="register">Register</string>
+    <string name="start">Start</string>
+    <string name="login">Log In</string>
+    <string name="loginHeader">"Log In "</string>
+    <string name="loginRegText">If you do not have an account. \n Please register</string>
+    <string name="loginForgotPass">Forgot password?</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+    <string name="registerHeader">Register</string>
+    <string name="registerLoginText">If you have an account. Please Log in.</string>
+</resources>
