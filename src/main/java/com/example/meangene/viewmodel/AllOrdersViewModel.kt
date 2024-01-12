@@ -21,6 +21,9 @@ class AllOrdersViewModel @Inject constructor(
     private val _allOrders = MutableStateFlow<Resource<List<Order>>>(Resource.Unspecified())
     val allOrders = _allOrders.asStateFlow()
 
+    private val pagingInfo = PagingInfo()
+
+
     init {
         getAllOrders()
     }
@@ -30,12 +33,16 @@ class AllOrdersViewModel @Inject constructor(
             _allOrders.emit(Resource.Loading())
         }
 
-        firestore.collection("user").document(auth.uid!!).collection("orders").get()
+        firestore.collection("user").document(auth.uid!!).collection("orders")
+            .limit(pagingInfo.allOrdersPage * 10).get()
             .addOnSuccessListener {
                 val orders = it.toObjects(Order::class.java)
+                pagingInfo.isPagingEnd = orders == pagingInfo.oldestAllOrders
+                pagingInfo.oldestAllOrders = orders
                 viewModelScope.launch {
                     _allOrders.emit(Resource.Success(orders))
                 }
+                pagingInfo.allOrdersPage++
             }.addOnFailureListener {
                 viewModelScope.launch {
                     _allOrders.emit(Resource.Error(it.message.toString()))
@@ -44,6 +51,11 @@ class AllOrdersViewModel @Inject constructor(
     }
 
 }
+internal data class PagingInfo(
+    var allOrdersPage:Long = 1,
+    var oldestAllOrders: List<Order> = emptyList(),
+    var isPagingEnd:Boolean = false
+)
 
 
 
