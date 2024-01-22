@@ -18,6 +18,7 @@ import com.example.meangene.databinding.FragmentCartBinding
 import com.example.meangene.firebase.FirebaseCommon
 import com.example.meangene.util.Resource
 import com.example.meangene.util.VerticalItemDecoration
+import com.example.meangene.util.showBottomNavigationView
 import com.example.meangene.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -153,5 +154,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             adapter = cartAdapter
             addItemDecoration(VerticalItemDecoration())
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigationView()
     }
 }
