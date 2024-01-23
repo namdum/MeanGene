@@ -28,13 +28,15 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
     protected val  searchAdapter: SearchAdapter by lazy { SearchAdapter() }
     private val viewModel:SearchViewModel by viewModels<SearchViewModel>()
-
+    private var searchString:String? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater)
+        searchString = arguments?.getString("searchString")
+
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,13 +44,12 @@ class SearchFragment: Fragment(R.layout.fragment_search) {
 
         setupSearchProductsRv()
 
-        var searchString = arguments?.getString("searchString")
 
         binding.apply {
             if (searchString != "Search Box" ) {
                 searchSearchBarTextView.setText(searchString)
                 if (searchString != null) {
-                    viewModel.getSearch(searchString)
+                    viewModel.getSearch(searchString!!)
                 }
 
             }
