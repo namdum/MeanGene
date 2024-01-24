@@ -27,6 +27,8 @@ class SearchViewModel @Inject constructor(
     private val _error = MutableSharedFlow<String>()
     val error = _error.asSharedFlow()
 
+    private val pagingInfo = searchPagingInfo()
+
     fun getSearch(searchVar: String) {
         println("...........$searchVar")
         val validateInputs = validateInputs(searchVar)
@@ -38,15 +40,20 @@ class SearchViewModel @Inject constructor(
         firestore.collection("Products")
             .orderBy("name")
             .startAt(searchVar)
-            .endAt(searchVar + '\uf8ff').get()
+            .endAt(searchVar + '\uf8ff')
+            .limit(pagingInfo.bestProductsPage * 10)
+            .get()
 
             .addOnSuccessListener {
                 val products = it.toObjects(Product::class.java)
+                pagingInfo.isPagingEnd = products == pagingInfo.oldestBestProducts
+                pagingInfo.oldestBestProducts = products
                 viewModelScope.launch {
                     it.let {
                     _search.emit(Resource.Success(products))
                     }
                 }
+                pagingInfo.bestProductsPage++
             }.addOnFailureListener {
                 viewModelScope.launch {
 
@@ -59,3 +66,8 @@ class SearchViewModel @Inject constructor(
         return search.trim().isNotEmpty()
     }
 }
+internal data class searchPagingInfo(
+    var bestProductsPage:Long = 1,
+    var oldestBestProducts: List<Product> = emptyList(),
+    var isPagingEnd:Boolean = false
+)
